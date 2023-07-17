@@ -2,7 +2,7 @@
 #include "unit.h"
 #include "map_size.h"
 
-class Knight : public Unit
+class Swordsman : public Unit
 {
     public:
     int movement_points_left; 
@@ -10,9 +10,9 @@ class Knight : public Unit
     int training_time;
     int cost;
 
-    Knight(char aff, int* u)
+    Swordsman(char aff, int* u)
     {
-        type = 'K';
+        type = 'S';
         affiliation = aff;
         id = *u;
         (*u)++;
@@ -28,14 +28,14 @@ class Knight : public Unit
             y_coord = map_size_y - 1;
         }
 
-        stamina = 70;
-        movement_points_left = 5;
+        stamina = 50;
+        movement_points_left = 2;
         attack_possible = true;
-        cost = 450;
-        training_time = 4;
+        cost = 200;
+        training_time = 3;
 
         std::cout
-        << "\nKnight: " << std::endl
+        << "\nSwordsman: " << std::endl
         << "affiliation: " << affiliation << std::endl
         << "x coord: " << x_coord << std::endl
         << "y coord: " << y_coord << std::endl

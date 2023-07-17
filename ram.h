@@ -2,7 +2,7 @@
 #include "unit.h"
 #include "map_size.h"
 
-class Knight : public Unit
+class Ram : public Unit
 {
     public:
     int movement_points_left; 
@@ -10,9 +10,9 @@ class Knight : public Unit
     int training_time;
     int cost;
 
-    Knight(char aff, int* u)
+    Ram(char aff, int* u)
     {
-        type = 'K';
+        type = 'P';
         affiliation = aff;
         id = *u;
         (*u)++;
@@ -35,7 +35,7 @@ class Knight : public Unit
         training_time = 4;
 
         std::cout
-        << "\nKnight: " << std::endl
+        << "\nRam: " << std::endl
         << "affiliation: " << affiliation << std::endl
         << "x coord: " << x_coord << std::endl
         << "y coord: " << y_coord << std::endl
