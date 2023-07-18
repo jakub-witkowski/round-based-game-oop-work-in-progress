@@ -5,17 +5,20 @@
 class Swordsman : public Unit
 {
     public:
-    /*int movement_points_left; 
-    bool attack_possible;
-    int training_time;
-    int cost;*/
 
-    Swordsman(char aff, int* u)
+    Swordsman(char aff, long* g, int* u)
     {
-        type = 'S';
-        //affiliation = aff;
+        type = 'S';        
+        current_stamina = 60;
+        movement_points_left = 2;
+        can_attack_enemy_units = true;
+        cost = 250;
+        training_time_left = 3;
+        attack_range = 1;
+
         id = *u;
         (*u)++;
+        *g -= cost;
 
         if ((affiliation = aff) == 'P')
         {
@@ -28,12 +31,6 @@ class Swordsman : public Unit
             y_coord = map_size_y - 1;
         }
 
-        current_stamina = 50;
-        movement_points_left = 2;
-        can_attack_enemy_units = true;
-        cost = 200;
-        training_time_left = 3;
-
         std::cout
         << "\nSwordsman: " << std::endl
         << "affiliation: " << affiliation << std::endl
@@ -43,6 +40,7 @@ class Swordsman : public Unit
         << "stamina: " << current_stamina << std::endl
         << "movement points left: " << movement_points_left << std::endl
         << "attack possible?: " << can_attack_enemy_units << std::endl
+        << "gold left: " << *g << std::endl
         << "number of units on the map: " << *u << std::endl;
     }
 };

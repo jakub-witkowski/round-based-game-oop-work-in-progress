@@ -2,7 +2,7 @@
 #include "unit.h"
 #include "map_size.h"
 
-class Base // : public Unit
+class Base 
 {
     public:
     char type;

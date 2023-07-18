@@ -14,6 +14,7 @@ class Unit
     bool can_attack_enemy_units;
     int training_time_left;
     int cost;
+    int attack_range;
 
     void move()
     {

@@ -5,17 +5,20 @@
 class Catapult : public Unit
 {
     public:
-    /*int movement_points_left; 
-    bool attack_possible;
-    int training_time;
-    int cost;*/
 
-    Catapult(char aff, int* u)
+    Catapult(char aff, long* g, int* u)
     {
         type = 'C';
-        //affiliation = aff;
+        current_stamina = 50;
+        movement_points_left = 2;
+        can_attack_enemy_units = true;
+        cost = 800;
+        training_time_left = 6;
+        attack_range = 7;
+
         id = *u;
         (*u)++;
+        *g -= cost;
 
         if ((affiliation = aff) == 'P')
         {
@@ -28,12 +31,6 @@ class Catapult : public Unit
             y_coord = map_size_y - 1;
         }
 
-        current_stamina = 70;
-        movement_points_left = 5;
-        can_attack_enemy_units = true;
-        cost = 800;
-        training_time_left = 4;
-
         std::cout
         << "\nCatapult: " << std::endl
         << "affiliation: " << affiliation << std::endl
@@ -43,6 +40,7 @@ class Catapult : public Unit
         << "stamina: " << current_stamina << std::endl
         << "movement points left: " << movement_points_left << std::endl
         << "attack possible?: " << can_attack_enemy_units << std::endl
+        << "gold left: " << *g << std::endl
         << "number of units on the map: " << *u << std::endl;
     }
 };
