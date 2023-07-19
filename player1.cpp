@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-/* Header files defining classes */
+/* header files defining classes */
 #include "unit.h"
 #include "base.h"
 #include "knight.h"
@@ -15,6 +15,9 @@
 /* defining map size */
 #include "map_size.h"
 
+/* header files including function definitions */
+#include "train.h"
+
 long gold{2000};
 int units_on_the_map_counter{0};
 
@@ -22,6 +25,19 @@ int main()
 {
     /* Declaring the vector to hold bases data */
     std::vector<Base*> bases = {new Base('P', &units_on_the_map_counter), new Base('E', &units_on_the_map_counter)};
+
+    /* checking conditions for training a new unit; casting dice if the conditions are satisfied */
+    if (bases[0]->is_base_busy != 0)
+        std::cout << "Training in progress, cannot train new units." << std::endl;
+    if (bases[0]->is_base_busy == 0 && gold < 100)
+        std::cout << "Insufficient gold for training new units." << std::endl;
+    if (bases[0]->is_base_busy == 0 && gold > 100)
+    {
+        if ((rand() % 100 + 1) > 50)
+            train(&gold);
+        else
+            std::cout << "No training ordered." << std::endl;
+    }
 
     /* Declaring the vector to hold unit data */
     std::vector<Unit*> units;
