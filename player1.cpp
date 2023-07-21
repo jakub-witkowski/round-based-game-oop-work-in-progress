@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <random>
 
 /* header files defining classes */
 #include "unit.h"
@@ -15,35 +16,41 @@
 /* defining map size */
 #include "map_size.h"
 
-/* header files including function definitions */
-#include "train.h"
+/* setting up random number generator 
+#include "roll_dice.h"*/
 
-long gold{2000};
-int units_on_the_map_counter{0};
+/* function and function pointer declarations */
+extern int dice();
+using func_ptr = decltype(&dice);
+func_ptr cast_dice = &dice;
+extern void train(func_ptr r, char aff, long* g, int* u, char* fname);
 
-int main()
+long gold{2000}; // variable holding the current amount of gold
+int units_on_the_map_counter{0}; // variable holding the current number of units present on the map
+
+int main(int argc, char* argv[])
 {
     /* Declaring the vector to hold bases data */
     std::vector<Base*> bases = {new Base('P', &units_on_the_map_counter), new Base('E', &units_on_the_map_counter)};
 
-    /* checking conditions for training a new unit; casting dice if the conditions are satisfied */
+    /* checking conditions for training a new unit; rolling dice if the conditions are satisfied */
     if (bases[0]->is_base_busy != 0)
         std::cout << "Training in progress, cannot train new units." << std::endl;
     if (bases[0]->is_base_busy == 0 && gold < 100)
         std::cout << "Insufficient gold for training new units." << std::endl;
     if (bases[0]->is_base_busy == 0 && gold > 100)
     {
-        if ((rand() % 100 + 1) > 50)
-            train(&gold);
+        if (dice() > 50)
+            train(cast_dice, bases[0]->affiliation, &gold, &units_on_the_map_counter, argv[1]);
         else
             std::cout << "No training ordered." << std::endl;
     }
 
-    /* Declaring the vector to hold unit data */
+    /* Declaring the vector to hold unit data 
     std::vector<Unit*> units;
 
     units.push_back(new Knight('P', &gold, &units_on_the_map_counter));
-    units.push_back(new Swordsman('E', &gold, &units_on_the_map_counter));
+    units.push_back(new Swordsman('E', &gold, &units_on_the_map_counter));*/
 
     //std::cout << "Id of the unit under index 1: " << units[1]->id << std::endl;
 
