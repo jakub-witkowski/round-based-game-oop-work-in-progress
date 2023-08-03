@@ -1,6 +1,7 @@
 #include <random>
+#include <iostream>
 
-int dice()
+int dice(int min, int max)
 {
     /*std::default_random_engine generator;
     std::uniform_int_distribution<int> distribution(1,100);
@@ -8,8 +9,9 @@ int dice()
 
     std::random_device rd;
     std::default_random_engine gen(rd());
-    std::uniform_int_distribution<> distr(1, 100); // define the range
+    std::uniform_int_distribution<> distr(min, max); // define the range
     int dice_roll = distr(gen);
+    std::cout << "Dice: " << dice_roll << std::endl;
 
     return dice_roll;
 }

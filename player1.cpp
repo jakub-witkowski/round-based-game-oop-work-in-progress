@@ -20,15 +20,15 @@
 #include "roll_dice.h"*/
 
 /* function and function pointer declarations */
-extern int dice();
-using func_ptr = decltype(&dice);
-func_ptr cast_dice = &dice;
-extern void train(func_ptr r, char aff, long* g, int* u, char* fname);
+extern int dice(int, int);
+/*using func_ptr = decltype(&dice);
+func_ptr cast_dice = &dice;*/
+extern void train(int (*r)(int min, int max), char aff, long* g, int* u);
 
 long gold{2000}; // variable holding the current amount of gold
 int units_on_the_map_counter{0}; // variable holding the current number of units present on the map
 
-int main(int argc, char* argv[])
+int main()
 {
     /* Declaring the vector to hold bases data */
     std::vector<Base*> bases = {new Base('P', &units_on_the_map_counter), new Base('E', &units_on_the_map_counter)};
@@ -40,8 +40,8 @@ int main(int argc, char* argv[])
         std::cout << "Insufficient gold for training new units." << std::endl;
     if (bases[0]->is_base_busy == 0 && gold > 100)
     {
-        if (dice() > 50)
-            train(cast_dice, bases[0]->affiliation, &gold, &units_on_the_map_counter, argv[1]);
+        if (dice(1, 100) > 50)
+            train(&dice, bases[0]->affiliation, &gold, &units_on_the_map_counter);
         else
             std::cout << "No training ordered." << std::endl;
     }

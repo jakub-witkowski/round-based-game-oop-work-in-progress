@@ -16,15 +16,9 @@ class Unit
     int cost;
     int attack_range;
 
-    void move()
-    {
+    void move(int (*)(int, int), char, int*, const int, const int);
 
-    }
-
-    void attack()
-    {
-
-    }
+    void attack();
 };
 
 #endif

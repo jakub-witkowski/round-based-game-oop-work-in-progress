@@ -2,6 +2,9 @@
 #include "unit.h"
 #include "map_size.h"
 
+#ifndef BASE_H
+#define BASE_H
+
 class Base 
 {
     public:
@@ -59,3 +62,5 @@ class Base
 
     }
 };
+
+#endif

@@ -13,9 +13,9 @@
 #include "worker.h"
 #include "ram.h"
 
-void train(int (*r)(), char aff, long* g, int* u, char* fname)
+void train(int (*r)(int min, int max), char aff, long* g, int* u)
 {
-    //int value; // holds the drawing drawing result;
+    int value{}; // holds the drawing result;
 	std::string phrase; // phrase printed once training is initiated;
 	bool choice_made = false; // controls the selection process;
 
@@ -36,7 +36,8 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 
     if (choice_made == false && (*g >= 100 && *g < 250))
 	{
-		if (r() <= 50)
+		value = r(1, 100);
+		if (value <= 50)
 		{
 			phrase = "training a worker";
 
@@ -46,7 +47,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if (r() > 50)
+		else if (value > 50)
 		{
 			phrase = "training a pikeman";
 
@@ -60,7 +61,8 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 
     if (choice_made == false && (*g >= 250 && *g < 400))
 	{
-		if (r() <= 25)
+		value = r(1, 100);
+		if (value <= 25)
 		{
 			phrase = "training a worker";
 
@@ -70,7 +72,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if (r() > 25 && r() <= 50)
+		else if (value > 25 && value <= 50)
 		{
 			phrase = "training a pikeman";
 
@@ -80,7 +82,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if (r() > 50 && r() < 75)
+		else if (value > 50 && value < 75)
 		{
 			phrase = "training a swordsman";
 
@@ -90,7 +92,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if (r() > 75 && r() <= 100)
+		else if (value > 75 && value <= 100)
 		{
 			phrase = "training an archer";
 
@@ -104,7 +106,8 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 
     if (choice_made == false && (*g >= 400 && *g < 500))
 	{
-		if (r() <= 20)
+		value = r(1, 100);
+		if (value <= 20)
 		{
 			phrase = "training a worker";
 
@@ -114,7 +117,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if (r() > 20 && r() <= 40)
+		else if (value > 20 && value <= 40)
 		{
 			phrase = "training a pikeman";
 
@@ -124,7 +127,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if (r() > 40 && r() <= 60)
+		else if (value > 40 && value <= 60)
 		{
 			phrase = "training a swordsman";
 
@@ -134,7 +137,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if (r() > 60 && r() <= 80)
+		else if (value > 60 && value <= 80)
 		{
 			phrase = "training an archer";
 
@@ -144,7 +147,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if (r() > 80 && r() <= 100)
+		else if (value > 80 && value <= 100)
 		{
 			phrase = "training a knight";
 
@@ -158,7 +161,8 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 
 	if (choice_made == false && (*g >= 500 && *g < 800))
 	{
-		if ((r() + r() + r()) <= 50)
+		value = r(1, 100);
+		if ((3 * value) <= 50)
 		{
 			phrase = "training a worker";
 
@@ -168,7 +172,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if ((r() + r() + r()) > 50 && (r() + r() + r()) <= 100)
+		else if ((3 * value) > 50 && (3 * value) <= 100)
 		{
 			phrase = "training a pikeman";
 
@@ -178,7 +182,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if ((r() + r() + r()) > 100 && (r() + r() + r()) <= 150)
+		else if ((3 * value) > 100 && (3 * value) <= 150)
 		{
 			phrase = "training a swordsman";
 
@@ -188,7 +192,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if ((r() + r() + r()) > 150 && (r() + r() + r()) <= 200)
+		else if ((3 * value) > 150 && (3 * value) <= 200)
 		{
 			phrase = "training an archer";
 
@@ -198,7 +202,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if ((r() + r() + r()) > 200 && (r() + r() + r()) <= 250)
+		else if ((3 * value) > 200 && (3 * value) <= 250)
 		{
 			phrase = "training a knight";
 
@@ -208,7 +212,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if ((r() + r() + r()) > 250 && (r() + r() + r()) <= 300)
+		else if ((3 * value) > 250 && (3 * value) <= 300)
 		{
 			phrase = "producing a ram";
 
@@ -222,7 +226,8 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 
 	if (choice_made == false && *g > 800)
 	{
-		if ((r() * 3.5) <= 50)
+		value = r(1, 100);
+		if ((value * 3.5) <= 50)
 		{
 			phrase = "training a worker";
 
@@ -232,7 +237,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if ((r() * 3.5) > 50 && (r() * 3.5) <= 100)
+		else if ((value * 3.5) > 50 && (value * 3.5) <= 100)
 		{
 			phrase = "training a pikeman";
 
@@ -242,7 +247,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if ((r() * 3.5) > 100 && (r() * 3.5) <= 150)
+		else if ((value * 3.5) > 100 && (value * 3.5) <= 150)
 		{
 			phrase = "training a swordsman";
 
@@ -252,7 +257,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if ((r() * 3.5) > 150 && (r() * 3.5) <= 200)
+		else if ((value * 3.5) > 150 && (value * 3.5) <= 200)
 		{
 			phrase = "training an archer";
 
@@ -262,7 +267,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if ((r() * 3.5) > 200 && (r() * 3.5) <= 250)
+		else if ((value * 3.5) > 200 && (value * 3.5) <= 250)
 		{
 			phrase = "training a knight";
 
@@ -272,7 +277,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if ((r() * 3.5) > 250 && (r() * 3.5) <= 300)
+		else if ((value * 3.5) > 250 && (value * 3.5) <= 300)
 		{
 			phrase = "producing a ram";
 
@@ -282,7 +287,7 @@ void train(int (*r)(), char aff, long* g, int* u, char* fname)
 			type = training_unit_ptr->type;
 			choice_made = true;
 		}
-		else if ((r() * 3.5) > 300)
+		else if ((value * 3.5) > 300)
 		{
 			phrase = "producing a catapult";
 
