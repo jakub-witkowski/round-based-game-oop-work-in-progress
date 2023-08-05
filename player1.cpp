@@ -32,8 +32,15 @@ int main()
 {
     /* Declaring the vector to hold bases data */
     std::vector<Base*> bases = {new Base('P', &units_on_the_map_counter), new Base('E', &units_on_the_map_counter)};
+    /* Declaring the vector to hold unit data */
+    std::vector<Unit*> units;
 
-    /* checking conditions for training a new unit; rolling dice if the conditions are satisfied */
+    units.push_back(new Knight('P', &gold, &units_on_the_map_counter));
+    units.push_back(new Swordsman('E', &gold, &units_on_the_map_counter));
+
+    units[0]->move(&dice, 'P', &units_on_the_map_counter, map_size_x, map_size_y);
+
+    /* checking conditions for training a new unit; rolling dice if the conditions are satisfied 
     if (bases[0]->is_base_busy != 0)
         std::cout << "Training in progress, cannot train new units." << std::endl;
     if (bases[0]->is_base_busy == 0 && gold < 100)
@@ -44,7 +51,15 @@ int main()
             train(&dice, bases[0]->affiliation, &gold, &units_on_the_map_counter);
         else
             std::cout << "No training ordered." << std::endl;
-    }
+    }*/
+
+    /*if (units_on_the_map_counter > 2)
+    {
+        for (int i = 0; i <= units_on_the_map_counter - 2; i++)
+        {
+            units[i]->move(&dice, 'P', &units_on_the_map_counter, map_size_x, map_size_y);
+        }
+    }*/
 
     /* Declaring the vector to hold unit data 
     std::vector<Unit*> units;

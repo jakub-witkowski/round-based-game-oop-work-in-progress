@@ -1,6 +1,9 @@
 #ifndef UNIT_H
 #define UNIT_H
 
+#include "base.h"
+#include <vector>
+
 class Unit
 {
     public:
@@ -15,6 +18,8 @@ class Unit
     int training_time_left;
     int cost;
     int attack_range;
+
+    void update_training_time(std::vector<Base*>);
 
     void move(int (*)(int, int), char, int*, const int, const int);
 
