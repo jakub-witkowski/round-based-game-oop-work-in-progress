@@ -67,5 +67,6 @@ int main()
 
     //std::cout << "Id of the unit under index 1: " << units[1]->id << std::endl;
 
+    //delete units;
     return 0;
 }

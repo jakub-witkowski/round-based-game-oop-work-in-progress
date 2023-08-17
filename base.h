@@ -32,15 +32,13 @@ class Base : public Unit
             number_of_active_units++;
         }
 
-        if (affiliation == 'P')
+        if ((affiliation = aff) == 'P')
         {
-            coordinates.first = 0;
-            coordinates.second = 0;
+            coordinates = {0,0};
         } 
         else
         {
-            coordinates.first = map_size_x - 1;
-            coordinates.second = map_size_y - 1;
+            coordinates = {map_size_x - 1, map_size_y - 1};
         }
 
         current_stamina = 200;
@@ -55,6 +53,11 @@ class Base : public Unit
         << "stamina: " << current_stamina << std::endl
         << "is base busy?: " << is_base_busy << std::endl
         << "number of units on the map: " << number_of_active_units << std::endl;
+    }
+
+    ~Base()
+    {
+        
     }
 
     void train()
