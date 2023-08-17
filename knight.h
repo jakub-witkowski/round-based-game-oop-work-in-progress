@@ -22,21 +22,21 @@ class Knight : public Unit
 
         if ((affiliation = aff) == 'P')
         {
-            x_coord = 0;
-            y_coord = 0;
+            coordinates.first = 0;
+            coordinates.second = 0;
         } 
         else
         {
-            x_coord = map_size_x - 1;
-            y_coord = map_size_y - 1;
+            coordinates.first = map_size_x - 1;
+            coordinates.second = map_size_y - 1;
         }
 
         std::cout
         << "\nKnight: " << std::endl
         << "affiliation: " << affiliation << std::endl
         << "unit id: " << id <<std::endl
-        << "x coord: " << x_coord << std::endl
-        << "y coord: " << y_coord << std::endl
+        << "x coord: " << coordinates.first << std::endl
+        << "y coord: " << coordinates.second << std::endl
         << "stamina: " << current_stamina << std::endl
         << "movement points left: " << movement_points_left << std::endl
         << "attack possible?: " << can_attack_enemy_units << std::endl

@@ -96,7 +96,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training an archer";
 
-			Archer* training_unit_ptr = new Archer(aff, g, u);
+			Archer* training_unit_ptr = new Archer(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -141,7 +141,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training an archer";
 
-			Archer* training_unit_ptr = new Archer(aff, g, u);
+			Archer* training_unit_ptr = new Archer(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -196,7 +196,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training an archer";
 
-			Archer* training_unit_ptr = new Archer(aff, g, u);
+			Archer* training_unit_ptr = new Archer(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -261,7 +261,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training an archer";
 
-			Archer* training_unit_ptr = new Archer(aff, g, u);
+			Archer* training_unit_ptr = new Archer(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;

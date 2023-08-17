@@ -26,19 +26,17 @@ func_ptr cast_dice = &dice;*/
 extern void train(int (*r)(int min, int max), char aff, long* g, int* u);
 
 long gold{2000}; // variable holding the current amount of gold
-int units_on_the_map_counter{0}; // variable holding the current number of units present on the map
+//int units_on_the_map_counter{0}; // variable holding the current number of units present on the map
 
 int main()
 {
-    /* Declaring the vector to hold bases data */
-    std::vector<Base*> bases = {new Base('P', &units_on_the_map_counter), new Base('E', &units_on_the_map_counter)};
     /* Declaring the vector to hold unit data */
-    std::vector<Unit*> units;
+    std::vector<Unit*> units = {new Base('P'), new Base('E')};
 
-    units.push_back(new Knight('P', &gold, &units_on_the_map_counter));
-    units.push_back(new Swordsman('E', &gold, &units_on_the_map_counter));
+    units.push_back(new Archer('P', &gold));
+    units.push_back(new Archer('E', &gold));
 
-    units[0]->move(&dice, 'P', &units_on_the_map_counter, map_size_x, map_size_y);
+    units[2]->move(&dice, 'P', map_size_x, map_size_y);
 
     /* checking conditions for training a new unit; rolling dice if the conditions are satisfied 
     if (bases[0]->is_base_busy != 0)

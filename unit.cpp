@@ -1,8 +1,12 @@
 #include <iostream>
 #include "unit.h"
+#include "base.h"
+#include <vector>
+
+int Unit::number_of_active_units{0};
 
 /* Updates the number of rounds before a training unit becomes fully functional */
-void Unit::update_training_time(std::vector<Base*> b)
+void Unit::update_training_time(std::vector<Unit*> u)
 {
     if (this->training_time_left > 1)
         this->training_time_left--;
@@ -11,16 +15,17 @@ void Unit::update_training_time(std::vector<Base*> b)
         this->training_time_left--;
         if (this->affiliation == 'P')
         {
-            b[0]->is_base_busy = false;
+            u[0]->is_base_busy = false;
         }
         else if (this->affiliation == 'E')
         {
-            b[1]->is_base_busy = false;
+            u[1]->is_base_busy = false;
         }
     }
 }
 
-void Unit::move(int (*r)(int, int), char aff, int* u, const int x, const int y)
+//void Unit::move(int (*r)(int, int), char aff, int* u, const int x, const int y)
+void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
 {
     if ((this->affiliation == aff) && (this->training_time_left == 0))
     {
@@ -112,7 +117,7 @@ void Unit::move(int (*r)(int, int), char aff, int* u, const int x, const int y)
         if (dice_cast == true)
         {
             /* validating the draws against the map */
-            if (((this->x_coord + x_axis_move) >= x) || ((this->y_coord + y_axis_move) >= y))
+            if (((this->coordinates.first + x_axis_move) >= x) || ((this->coordinates.second + y_axis_move) >= y))
                 dice_cast = false; // cannot go outside the map
             if (distance > this->movement_points_left)
                 dice_cast = false; // cannot exceed remaining movement
@@ -120,8 +125,8 @@ void Unit::move(int (*r)(int, int), char aff, int* u, const int x, const int y)
 
         if (dice_cast == true)
         {
-            target_x = this->x_coord + x_axis_move;
-            target_y = this->y_coord + y_axis_move;
+            target_x = this->coordinates.first + x_axis_move;
+            target_y = this->coordinates.second + y_axis_move;
             this->movement_points_left -= distance;
 
             std::cout
@@ -134,8 +139,8 @@ void Unit::move(int (*r)(int, int), char aff, int* u, const int x, const int y)
             << ". "
             << std::endl;
 
-            this->x_coord = target_x;
-            this->y_coord = target_y;
+            this->coordinates.first = target_x;
+            this->coordinates.second = target_y;
         }
     }
 }

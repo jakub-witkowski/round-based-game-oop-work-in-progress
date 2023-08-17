@@ -5,18 +5,18 @@
 #ifndef BASE_H
 #define BASE_H
 
-class Base 
+class Base : public Unit
 {
     public:
-    char type;
+    /*char type;
     char affiliation;
     int id;
     int x_coord;
     int y_coord;
     int current_stamina;
-    bool is_base_busy;
+    bool is_base_busy;*/
 
-    Base(char aff, int* u)
+    Base(char aff)
     {
         type = 'B';
         affiliation = aff;
@@ -24,23 +24,23 @@ class Base
         if (affiliation == 'P')
         {
             id = 0;
-            (*u)++;
+            number_of_active_units++;
         }
         else
         {
             id = 1;
-            (*u)++;
+            number_of_active_units++;
         }
 
         if (affiliation == 'P')
         {
-            x_coord = 0;
-            y_coord = 0;
+            coordinates.first = 0;
+            coordinates.second = 0;
         } 
         else
         {
-            x_coord = map_size_x - 1;
-            y_coord = map_size_y - 1;
+            coordinates.first = map_size_x - 1;
+            coordinates.second = map_size_y - 1;
         }
 
         current_stamina = 200;
@@ -50,11 +50,11 @@ class Base
         << "\nBase: " << std::endl
         << "affiliation: " << affiliation << std::endl
         << "unit id: " << id <<std::endl
-        << "x coord: " << x_coord << std::endl
-        << "y coord: " << y_coord << std::endl
+        << "x coord: " << coordinates.first << std::endl
+        << "y coord: " << coordinates.second << std::endl
         << "stamina: " << current_stamina << std::endl
         << "is base busy?: " << is_base_busy << std::endl
-        << "number of units on the map: " << *u << std::endl;
+        << "number of units on the map: " << number_of_active_units << std::endl;
     }
 
     void train()
