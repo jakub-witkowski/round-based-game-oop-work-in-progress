@@ -13,7 +13,7 @@
 #include "worker.h"
 #include "ram.h"
 
-void train(int (*r)(int min, int max), char aff, long* g, int* u)
+void train(int (*r)(int min, int max), char aff, long* g)
 {
     int value{}; // holds the drawing result;
 	std::string phrase; // phrase printed once training is initiated;
@@ -27,7 +27,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 	{
 		phrase = "training a worker";
 
-		Worker* training_unit_ptr = new Worker(aff, g, u);
+		Worker* training_unit_ptr = new Worker(aff, g);
 
 		unit_cost = training_unit_ptr->cost;
 		type = training_unit_ptr->type;
@@ -41,7 +41,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a worker";
 
-			Worker* training_unit_ptr = new Worker(aff, g, u);
+			Worker* training_unit_ptr = new Worker(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -51,7 +51,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a pikeman";
 
-			Pikeman* training_unit_ptr = new Pikeman(aff, g, u);
+			Pikeman* training_unit_ptr = new Pikeman(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -66,7 +66,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a worker";
 
-			Worker* training_unit_ptr = new Worker(aff, g, u);
+			Worker* training_unit_ptr = new Worker(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -76,7 +76,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a pikeman";
 
-			Pikeman* training_unit_ptr = new Pikeman(aff, g, u);
+			Pikeman* training_unit_ptr = new Pikeman(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -86,7 +86,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a swordsman";
 
-			Swordsman* training_unit_ptr = new Swordsman(aff, g, u);
+			Swordsman* training_unit_ptr = new Swordsman(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -111,7 +111,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a worker";
 
-			Worker* training_unit_ptr = new Worker(aff, g, u);
+			Worker* training_unit_ptr = new Worker(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -121,7 +121,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a pikeman";
 
-			Pikeman* training_unit_ptr = new Pikeman(aff, g, u);
+			Pikeman* training_unit_ptr = new Pikeman(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -131,7 +131,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a swordsman";
 
-			Swordsman* training_unit_ptr = new Swordsman(aff, g, u);
+			Swordsman* training_unit_ptr = new Swordsman(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -151,7 +151,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a knight";
 
-			Knight* training_unit_ptr = new Knight(aff, g, u);
+			Knight* training_unit_ptr = new Knight(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -166,7 +166,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a worker";
 
-			Worker* training_unit_ptr = new Worker(aff, g, u);
+			Worker* training_unit_ptr = new Worker(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -176,7 +176,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a pikeman";
 
-			Pikeman* training_unit_ptr = new Pikeman(aff, g, u);
+			Pikeman* training_unit_ptr = new Pikeman(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -186,7 +186,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a swordsman";
 
-			Swordsman* training_unit_ptr = new Swordsman(aff, g, u);
+			Swordsman* training_unit_ptr = new Swordsman(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -206,7 +206,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a knight";
 
-			Knight* training_unit_ptr = new Knight(aff, g, u);
+			Knight* training_unit_ptr = new Knight(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -216,7 +216,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "producing a ram";
 
-			Ram* training_unit_ptr = new Ram(aff, g, u);
+			Ram* training_unit_ptr = new Ram(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -231,7 +231,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a worker";
 
-			Worker* training_unit_ptr = new Worker(aff, g, u);
+			Worker* training_unit_ptr = new Worker(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -241,7 +241,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a pikeman";
 
-			Pikeman* training_unit_ptr = new Pikeman(aff, g, u);
+			Pikeman* training_unit_ptr = new Pikeman(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -251,7 +251,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a swordsman";
 
-			Swordsman* training_unit_ptr = new Swordsman(aff, g, u);
+			Swordsman* training_unit_ptr = new Swordsman(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -271,7 +271,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "training a knight";
 
-			Knight* training_unit_ptr = new Knight(aff, g, u);
+			Knight* training_unit_ptr = new Knight(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -281,7 +281,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "producing a ram";
 
-			Ram* training_unit_ptr = new Ram(aff, g, u);
+			Ram* training_unit_ptr = new Ram(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;
@@ -291,7 +291,7 @@ void train(int (*r)(int min, int max), char aff, long* g, int* u)
 		{
 			phrase = "producing a catapult";
 
-			Catapult* training_unit_ptr = new Catapult(aff, g, u);
+			Catapult* training_unit_ptr = new Catapult(aff, g);
 
 			unit_cost = training_unit_ptr->cost;
 			type = training_unit_ptr->type;

@@ -23,7 +23,7 @@
 extern int dice(int, int);
 /*using func_ptr = decltype(&dice);
 func_ptr cast_dice = &dice;*/
-extern void train(int (*r)(int min, int max), char aff, long* g, int* u);
+extern void train(int (*r)(int min, int max), char aff, long* g);
 
 long gold{2000}; // variable holding the current amount of gold
 //int units_on_the_map_counter{0}; // variable holding the current number of units present on the map
@@ -33,29 +33,30 @@ int main()
     /* Declaring the vector to hold unit data */
     std::vector<Unit*> units = {new Base('P'), new Base('E')};
 
-    units.push_back(new Archer('P', &gold));
+    units.push_back(new Knight('P', &gold));
     units.push_back(new Archer('E', &gold));
 
+    units[2]->training_time_left = 0;
     units[2]->move(&dice, 'P', map_size_x, map_size_y);
 
-    /* checking conditions for training a new unit; rolling dice if the conditions are satisfied 
-    if (bases[0]->is_base_busy != 0)
+    /* checking conditions for training a new unit; rolling dice if the conditions are satisfied*/ 
+    if (units[0]->is_base_busy != 0)
         std::cout << "Training in progress, cannot train new units." << std::endl;
-    if (bases[0]->is_base_busy == 0 && gold < 100)
+    if (units[0]->is_base_busy == 0 && gold < 100)
         std::cout << "Insufficient gold for training new units." << std::endl;
-    if (bases[0]->is_base_busy == 0 && gold > 100)
+    if (units[0]->is_base_busy == 0 && gold > 100)
     {
         if (dice(1, 100) > 50)
-            train(&dice, bases[0]->affiliation, &gold, &units_on_the_map_counter);
+            train(&dice, units[0]->affiliation, &gold);
         else
             std::cout << "No training ordered." << std::endl;
-    }*/
+    }
 
     /*if (units_on_the_map_counter > 2)
     {
         for (int i = 0; i <= units_on_the_map_counter - 2; i++)
         {
-            units[i]->move(&dice, 'P', &units_on_the_map_counter, map_size_x, map_size_y);
+            units[i]->move(&dice, 'P', map_size_x, map_size_y);
         }
     }*/
 

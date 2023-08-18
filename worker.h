@@ -6,7 +6,7 @@ class Worker : public Unit
 {
     public:
 
-    Worker(char aff, long* g, int* u)
+    Worker(char aff, long* g)
     {
         type = 'W';
         current_stamina = 20;
@@ -16,8 +16,8 @@ class Worker : public Unit
         training_time_left = 2;
         attack_range = 1;
 
-        id = *u;
-        (*u)++;
+        id = number_of_active_units;
+        number_of_active_units++;
         *g -= cost;
 
         if ((affiliation = aff) == 'P')
@@ -39,6 +39,6 @@ class Worker : public Unit
         << "movement points left: " << movement_points_left << std::endl
         << "attack possible?: " << can_attack_enemy_units << std::endl
         << "gold left: " << *g << std::endl
-        << "number of units on the map: " << *u << std::endl;
+        << "number of units on the map: " << number_of_active_units << std::endl;
     }
 };

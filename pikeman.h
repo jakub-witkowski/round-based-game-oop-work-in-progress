@@ -6,7 +6,7 @@ class Pikeman : public Unit
 {
     public:
 
-    Pikeman(char aff, long* g, int* u)
+    Pikeman(char aff, long* g)
     {
         type = 'P';
         current_stamina = 50;
@@ -16,8 +16,8 @@ class Pikeman : public Unit
         training_time_left = 3;
         attack_range = 2;
         
-        id = *u;
-        (*u)++;
+        id = number_of_active_units;
+        number_of_active_units++;
         *g -= cost;
 
         if ((affiliation = aff) == 'P')
@@ -39,6 +39,6 @@ class Pikeman : public Unit
         << "movement points left: " << movement_points_left << std::endl
         << "attack possible?: " << can_attack_enemy_units << std::endl
         << "gold left: " << *g << std::endl
-        << "number of units on the map: " << *u << std::endl;
+        << "number of units on the map: " << number_of_active_units << std::endl;
     }
 };

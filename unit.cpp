@@ -48,7 +48,7 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
 
         if (this->type == 'K')
         {
-            distance = r(0,6);
+            distance = r(0,5);
             switch (distance)
             {
                 case 0:
@@ -132,7 +132,7 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
             std::cout
             << "Ordering unit "
             << this->id
-            << "to move to x: "
+            << " to move to x: "
             << target_x
             << ", y: "
             << target_y
