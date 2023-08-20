@@ -36,21 +36,21 @@ int main()
     units.push_back(new Knight('P', &gold));
     units.push_back(new Archer('E', &gold));
 
-    units[2]->training_time_left = 0;
-    units[2]->move(&dice, 'P', map_size_x, map_size_y);
-
     /* checking conditions for training a new unit; rolling dice if the conditions are satisfied*/ 
-    if (units[0]->is_base_busy != 0)
+    if (units[0]->get_is_base_busy() != 0)
         std::cout << "Training in progress, cannot train new units." << std::endl;
-    if (units[0]->is_base_busy == 0 && gold < 100)
+    if (units[0]->get_is_base_busy() == 0 && gold < 100)
         std::cout << "Insufficient gold for training new units." << std::endl;
-    if (units[0]->is_base_busy == 0 && gold > 100)
+    if (units[0]->get_is_base_busy() == 0 && gold > 100)
     {
         if (dice(1, 100) > 50)
-            train(&dice, units[0]->affiliation, &gold);
+            train(&dice, units[0]->get_affiliation(), &gold);
         else
             std::cout << "No training ordered." << std::endl;
     }
+
+    units[2]->set_training_time_left(0);
+    units[2]->move(&dice, 'P', map_size_x, map_size_y);
 
     /*if (units_on_the_map_counter > 2)
     {

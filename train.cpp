@@ -29,8 +29,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 		Worker* training_unit_ptr = new Worker(aff, g);
 
-		unit_cost = training_unit_ptr->cost;
-		type = training_unit_ptr->type;
+		unit_cost = training_unit_ptr->get_cost();
+		type = training_unit_ptr->get_type();
 		choice_made = true;
 	}
 
@@ -43,8 +43,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Worker* training_unit_ptr = new Worker(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if (value > 50)
@@ -53,8 +53,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Pikeman* training_unit_ptr = new Pikeman(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 	}
@@ -68,8 +68,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Worker* training_unit_ptr = new Worker(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if (value > 25 && value <= 50)
@@ -78,8 +78,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Pikeman* training_unit_ptr = new Pikeman(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if (value > 50 && value < 75)
@@ -88,8 +88,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Swordsman* training_unit_ptr = new Swordsman(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if (value > 75 && value <= 100)
@@ -98,8 +98,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Archer* training_unit_ptr = new Archer(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 	}
@@ -113,8 +113,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Worker* training_unit_ptr = new Worker(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if (value > 20 && value <= 40)
@@ -123,8 +123,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Pikeman* training_unit_ptr = new Pikeman(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if (value > 40 && value <= 60)
@@ -133,8 +133,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Swordsman* training_unit_ptr = new Swordsman(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if (value > 60 && value <= 80)
@@ -143,8 +143,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Archer* training_unit_ptr = new Archer(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if (value > 80 && value <= 100)
@@ -153,8 +153,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Knight* training_unit_ptr = new Knight(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 	}
@@ -168,8 +168,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Worker* training_unit_ptr = new Worker(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if ((3 * value) > 50 && (3 * value) <= 100)
@@ -178,8 +178,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Pikeman* training_unit_ptr = new Pikeman(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if ((3 * value) > 100 && (3 * value) <= 150)
@@ -188,8 +188,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Swordsman* training_unit_ptr = new Swordsman(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if ((3 * value) > 150 && (3 * value) <= 200)
@@ -198,8 +198,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Archer* training_unit_ptr = new Archer(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if ((3 * value) > 200 && (3 * value) <= 250)
@@ -208,8 +208,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Knight* training_unit_ptr = new Knight(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if ((3 * value) > 250 && (3 * value) <= 300)
@@ -218,8 +218,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Ram* training_unit_ptr = new Ram(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 	}
@@ -233,8 +233,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Worker* training_unit_ptr = new Worker(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 50 && (value * 3.5) <= 100)
@@ -243,8 +243,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Pikeman* training_unit_ptr = new Pikeman(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 100 && (value * 3.5) <= 150)
@@ -253,8 +253,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Swordsman* training_unit_ptr = new Swordsman(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 150 && (value * 3.5) <= 200)
@@ -263,8 +263,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Archer* training_unit_ptr = new Archer(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 200 && (value * 3.5) <= 250)
@@ -273,8 +273,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Knight* training_unit_ptr = new Knight(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 250 && (value * 3.5) <= 300)
@@ -283,8 +283,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Ram* training_unit_ptr = new Ram(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 300)
@@ -293,8 +293,8 @@ void train(int (*r)(int min, int max), char aff, long* g)
 
 			Catapult* training_unit_ptr = new Catapult(aff, g);
 
-			unit_cost = training_unit_ptr->cost;
-			type = training_unit_ptr->type;
+			unit_cost = training_unit_ptr->get_cost();
+			type = training_unit_ptr->get_type();
 			choice_made = true;
 		}	
 	}

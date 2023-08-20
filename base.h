@@ -8,51 +8,44 @@
 class Base : public Unit
 {
     public:
-    /*char type;
-    char affiliation;
-    int id;
-    int x_coord;
-    int y_coord;
-    int current_stamina;
-    bool is_base_busy;*/
 
     Base(char aff)
     {
-        type = 'B';
-        affiliation = aff;
+        set_type('B');
+        set_affiliation(aff);
 
-        if (affiliation == 'P')
+        if (get_affiliation() == 'P')
         {
-            id = 0;
-            number_of_active_units++;
+            set_id(0);
+            update_unit_counter(1);
         }
-        else
+        else if (get_affiliation() == 'E')
         {
-            id = 1;
-            number_of_active_units++;
+            set_id(1);
+            update_unit_counter(1);
         }
 
-        if ((affiliation = aff) == 'P')
+        if (get_affiliation() == 'P')
         {
-            coordinates = {0,0};
+            set_coordinates(0,0);
         } 
         else
         {
-            coordinates = {map_size_x - 1, map_size_y - 1};
+            set_coordinates(map_size_x - 1, map_size_y - 1);
         }
 
-        current_stamina = 200;
-        is_base_busy = false;
+        set_current_stamina(200);
+        set_is_base_busy(false);
 
         std::cout
         << "\nBase: " << std::endl
-        << "affiliation: " << affiliation << std::endl
-        << "unit id: " << id <<std::endl
-        << "x coord: " << coordinates.first << std::endl
-        << "y coord: " << coordinates.second << std::endl
-        << "stamina: " << current_stamina << std::endl
-        << "is base busy?: " << is_base_busy << std::endl
-        << "number of units on the map: " << number_of_active_units << std::endl;
+        << "affiliation: " << get_affiliation() << std::endl
+        << "unit id: " << get_id() <<std::endl
+        << "x coord: " << get_coordinates().first << std::endl
+        << "y coord: " << get_coordinates().second << std::endl
+        << "stamina: " << get_current_stamina() << std::endl
+        << "is base busy?: " << get_is_base_busy() << std::endl
+        << "number of units on the map: " << get_number_of_active_units() << std::endl;
     }
 
     ~Base()

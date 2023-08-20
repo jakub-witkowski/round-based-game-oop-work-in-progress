@@ -8,37 +8,37 @@ class Ram : public Unit
 
     Ram(char aff, long* g)
     {
-        type = 'R';
-        current_stamina = 90;
-        movement_points_left = 2;
-        can_attack_enemy_units = true;
-        cost = 500;
-        training_time_left = 4;
-        attack_range = 1;
+        set_type('R');
+        set_current_stamina(90);
+        set_movement_points_left(2);
+        set_can_attack_enemy_units(true);
+        set_cost(500);
+        set_training_time_left(4);
+        set_attack_range(1);
 
-        id = number_of_active_units;
-        number_of_active_units++;
-        *g -= cost;
+        set_id(get_number_of_active_units());
+        update_unit_counter(1);
+        *g -= this->get_cost();
 
-        if ((affiliation = aff) == 'P')
+        if (this->get_affiliation() == 'P')
         {
-            coordinates = {0,0};
+            set_coordinates(0,0);
         } 
         else
         {
-            coordinates = {map_size_x - 1, map_size_y - 1};
+            set_coordinates(map_size_x - 1, map_size_y - 1);
         }
 
         std::cout
         << "\nRam: " << std::endl
-        << "affiliation: " << affiliation << std::endl
-        << "unit id: " << id <<std::endl
-        << "x coord: " << coordinates.first << std::endl
-        << "y coord: " << coordinates.second << std::endl
-        << "stamina: " << current_stamina << std::endl
-        << "movement points left: " << movement_points_left << std::endl
-        << "attack possible?: " << can_attack_enemy_units << std::endl
+        << "affiliation: " << this->get_affiliation() << std::endl
+        << "unit id: " << this->get_id() <<std::endl
+        << "x coord: " << this->get_coordinates().first << std::endl
+        << "y coord: " << this->get_coordinates().second << std::endl
+        << "stamina: " << this->get_current_stamina() << std::endl
+        << "movement points left: " << this->get_movement_points_left() << std::endl
+        << "attack possible?: " << this->get_can_attack_enemy_units() << std::endl
         << "gold left: " << *g << std::endl
-        << "number of units on the map: " << number_of_active_units << std::endl;
+        << "number of units on the map: " << get_number_of_active_units() << std::endl;
     }
 };

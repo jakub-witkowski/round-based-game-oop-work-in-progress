@@ -3,23 +3,146 @@
 #include "base.h"
 #include <vector>
 
+/* getter function definitions */
+int Unit::get_number_of_active_units()
+{
+    return number_of_active_units;
+}
+
+char Unit::get_type()
+{
+    return this->type;
+}
+    
+char Unit::get_affiliation()
+{
+    return this->affiliation;
+}
+
+int Unit::get_id()
+{
+    return this->id;
+}
+
+std::pair<int, int> Unit::get_coordinates()
+{
+    return this->coordinates;
+}
+
+int Unit::get_movement_points_left()
+{
+    return this->movement_points_left;
+}
+
+int Unit::get_current_stamina()
+{
+    return this->current_stamina;
+}
+
+bool Unit::get_can_attack_enemy_units()
+{
+    return this->can_attack_enemy_units;
+}
+
+int Unit::get_training_time_left()
+{
+    return this->training_time_left;
+}
+
+int Unit::get_cost()
+{
+    return this->cost;
+}
+
+int Unit::get_attack_range()
+{
+    return this->attack_range;
+}
+    
+bool Unit::get_is_base_busy()
+{
+    return this->is_base_busy;
+}
+
+/* setter function definitions */
+void Unit::set_type(char t)
+{
+    this->type = t;
+}
+
+void Unit::set_affiliation(char a)
+{
+    this->affiliation = a;
+}
+
+void Unit::set_id(int i)
+{
+    this->id = i;
+}
+
+void Unit::update_unit_counter(int c)
+{
+    number_of_active_units += c;
+}
+
+void Unit::set_coordinates(int x, int y)
+{    
+    this->coordinates.first = x;
+    this->coordinates.second = y;
+}
+
+void Unit::set_current_stamina(int st)
+{
+    this->current_stamina = st;
+}
+
+void Unit::set_can_attack_enemy_units(bool choice)
+{
+    this->can_attack_enemy_units = choice;
+}
+
+void Unit::set_cost(int c)
+{
+    this->cost = c;
+}
+
+void Unit::set_movement_points_left(int dist)
+{
+    this->movement_points_left = dist;
+}
+
+void Unit::set_training_time_left(int t)
+{
+    this->training_time_left = t;
+}
+
+void Unit::set_attack_range(int r)
+{
+    this->attack_range = r;
+}
+
+void Unit::set_is_base_busy(bool status)
+{
+    this->is_base_busy = status;
+}
+
 int Unit::number_of_active_units{0};
 
 /* Updates the number of rounds before a training unit becomes fully functional */
 void Unit::update_training_time(std::vector<Unit*> u)
 {
-    if (this->training_time_left > 1)
+    if (this->get_training_time_left() > 1)
         this->training_time_left--;
-    else if (this->training_time_left == 1)
+    else if (this->get_training_time_left() == 1)
     {
         this->training_time_left--;
         if (this->affiliation == 'P')
         {
-            u[0]->is_base_busy = false;
+            u[0]->set_is_base_busy(false);
         }
         else if (this->affiliation == 'E')
         {
-            u[1]->is_base_busy = false;
+            u[1]->set_is_base_busy(false);
         }
     }
 }
@@ -27,7 +150,7 @@ void Unit::update_training_time(std::vector<Unit*> u)
 //void Unit::move(int (*r)(int, int), char aff, int* u, const int x, const int y)
 void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
 {
-    if ((this->affiliation == aff) && (this->training_time_left == 0))
+    if ((this->get_affiliation() == aff) && (this->get_training_time_left() == 0))
     {
         /* how many fields a unit is ordered to move in x and y direction */
         int x_axis_move;
@@ -46,7 +169,7 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
         const int spread4[5][2] = { {0, 4}, {1, 3}, {2, 2}, {3, 1}, {4, 0} };
         const int spread5[6][2] = { {0, 5}, {1, 4}, {2, 3}, {3, 2}, {4, 1}, {5, 0} };
 
-        if (this->type == 'K')
+        if (this->get_type() == 'K')
         {
             distance = r(0,5);
             switch (distance)
@@ -88,7 +211,7 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
                     break;
             } 
         }
-        else if (this->type != 'K')
+        else if (this->get_type() != 'K')
         {
             distance = r(0,2);
             switch (distance)
@@ -117,30 +240,37 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
         if (dice_cast == true)
         {
             /* validating the draws against the map */
-            if (((this->coordinates.first + x_axis_move) >= x) || ((this->coordinates.second + y_axis_move) >= y))
-                dice_cast = false; // cannot go outside the map
-            if (distance > this->movement_points_left)
+            if (this->get_affiliation() == 'P')
+                if (((this->get_coordinates().first + x_axis_move) >= x) || ((this->get_coordinates().second + y_axis_move) >= y))
+                    dice_cast = false; // cannot go outside the map
+            if (this->get_affiliation() == 'E')
+                if (((this->get_coordinates().first - x_axis_move) < 0) || ((this->get_coordinates().second - y_axis_move) < 0))
+                    dice_cast = false; // cannot go outside the map
+        }
+
+        if (dice_cast == true)
+        {
+            if (distance > this->get_movement_points_left())
                 dice_cast = false; // cannot exceed remaining movement
         }
 
         if (dice_cast == true)
         {
-            target_x = this->coordinates.first + x_axis_move;
-            target_y = this->coordinates.second + y_axis_move;
-            this->movement_points_left -= distance;
+            target_x = this->get_coordinates().first + x_axis_move;
+            target_y = this->get_coordinates().second + y_axis_move;
+            set_movement_points_left(get_movement_points_left() - distance);
 
             std::cout
             << "Ordering unit "
-            << this->id
+            << this->get_id()
             << " to move to x: "
             << target_x
             << ", y: "
             << target_y
             << ". "
             << std::endl;
-
-            this->coordinates.first = target_x;
-            this->coordinates.second = target_y;
+    
+            this->set_coordinates(target_x, target_y);
         }
     }
 }
