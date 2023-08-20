@@ -49,8 +49,19 @@ int main()
             std::cout << "No training ordered." << std::endl;
     }
 
+    std::cout
+    << "units[2]->get_training_time_left() = "
+    << units[2]->get_training_time_left()
+    << std::endl;
+
     units[2]->set_training_time_left(0);
-    units[2]->move(&dice, 'P', map_size_x, map_size_y);
+    
+    std::cout
+    << "units[2]->get_training_time_left() = "
+    << units[2]->get_training_time_left()
+    << std::endl;
+
+    units[2]->move(&dice, units[2]->get_affiliation(), map_size_x, map_size_y);
 
     /*if (units_on_the_map_counter > 2)
     {

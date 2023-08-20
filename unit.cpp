@@ -147,7 +147,6 @@ void Unit::update_training_time(std::vector<Unit*> u)
     }
 }
 
-//void Unit::move(int (*r)(int, int), char aff, int* u, const int x, const int y)
 void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
 {
     if ((this->get_affiliation() == aff) && (this->get_training_time_left() == 0))

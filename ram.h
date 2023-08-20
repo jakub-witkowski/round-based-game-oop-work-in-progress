@@ -9,6 +9,7 @@ class Ram : public Unit
     Ram(char aff, long* g)
     {
         set_type('R');
+        set_affiliation(aff);
         set_current_stamina(90);
         set_movement_points_left(2);
         set_can_attack_enemy_units(true);

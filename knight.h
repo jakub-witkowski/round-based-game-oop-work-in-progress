@@ -9,6 +9,7 @@ class Knight : public Unit
     Knight(char aff, long* g)
     {
         set_type('K');
+        set_affiliation(aff);
         set_current_stamina(70);
         set_movement_points_left(5);
         set_can_attack_enemy_units(true);

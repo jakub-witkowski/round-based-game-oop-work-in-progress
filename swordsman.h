@@ -9,6 +9,7 @@ class Swordsman : public Unit
     Swordsman(char aff, long* g)
     {
         set_type('S');
+        set_affiliation(aff);
         set_current_stamina(60);
         set_movement_points_left(2);
         set_can_attack_enemy_units(true);

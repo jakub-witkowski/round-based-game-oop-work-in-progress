@@ -9,6 +9,7 @@ class Catapult : public Unit
     Catapult(char aff, long* g)
     {
         set_type('C');
+        set_affiliation(aff);
         set_current_stamina(50);
         set_movement_points_left(2);
         set_can_attack_enemy_units(true);
