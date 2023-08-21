@@ -116,6 +116,11 @@ void Unit::set_training_time_left(int t)
     this->training_time_left = t;
 }
 
+void Unit::decrease_training_time_left()
+{
+    this->training_time_left--;
+}
+
 void Unit::set_attack_range(int r)
 {
     this->attack_range = r;
@@ -132,21 +137,22 @@ int Unit::number_of_active_units{0};
 void Unit::update_training_time(std::vector<Unit*> u)
 {
     if (this->get_training_time_left() > 1)
-        this->training_time_left--;
+        this->decrease_training_time_left();
     else if (this->get_training_time_left() == 1)
     {
-        this->training_time_left--;
-        if (this->affiliation == 'P')
+        this->decrease_training_time_left();
+        if (this->get_affiliation() == 'P')
         {
             u[0]->set_is_base_busy(false);
         }
-        else if (this->affiliation == 'E')
+        else if (this->get_affiliation() == 'E')
         {
             u[1]->set_is_base_busy(false);
         }
     }
 }
 
+/* Orders a unit to move to a randomly generated location */
 void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
 {
     if ((this->get_affiliation() == aff) && (this->get_training_time_left() == 0))

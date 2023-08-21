@@ -68,6 +68,8 @@ class Unit
 
     void set_training_time_left(int);
 
+    void decrease_training_time_left();
+
     void set_attack_range(int);
 
     void set_is_base_busy(bool);

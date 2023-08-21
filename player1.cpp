@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <random>
+//#include <random>
+#include <unistd.h>
 
 /* header files defining classes */
 #include "unit.h"
@@ -16,69 +17,67 @@
 /* defining map size */
 #include "map_size.h"
 
-/* setting up random number generator 
-#include "roll_dice.h"*/
-
-/* function and function pointer declarations */
-extern int dice(int, int);
-/*using func_ptr = decltype(&dice);
-func_ptr cast_dice = &dice;*/
+/* function declarations */
+extern int dice(int min, int max);
 extern void train(int (*r)(int min, int max), char aff, long* g);
 
 long gold{2000}; // variable holding the current amount of gold
-//int units_on_the_map_counter{0}; // variable holding the current number of units present on the map
+
+/* round counters */
+int player1_round_counter{1};
+int player2_round_counter{1};
 
 int main()
 {
     /* Declaring the vector to hold unit data */
     std::vector<Unit*> units = {new Base('P'), new Base('E')};
 
-    units.push_back(new Knight('P', &gold));
-    units.push_back(new Archer('E', &gold));
+    //units.push_back(new Knight('P', &gold));
+    //units.push_back(new Archer('E', &gold));
 
-    /* checking conditions for training a new unit; rolling dice if the conditions are satisfied*/ 
-    if (units[0]->get_is_base_busy() != 0)
-        std::cout << "Training in progress, cannot train new units." << std::endl;
-    if (units[0]->get_is_base_busy() == 0 && gold < 100)
-        std::cout << "Insufficient gold for training new units." << std::endl;
-    if (units[0]->get_is_base_busy() == 0 && gold > 100)
+    while(player1_round_counter + player2_round_counter < 1000)
     {
-        if (dice(1, 100) > 50)
-            train(&dice, units[0]->get_affiliation(), &gold);
-        else
-            std::cout << "No training ordered." << std::endl;
+        std::cout
+        << "Player 1, round "
+        << player1_round_counter << std::endl;
+
+        /* updating training times */
+        for (int i = 0; i< units.size(); i++)
+        {
+            units[i]->update_training_time(units);
+        }
+
+            std::cout
+            << std::endl
+            << "Id:\t|" << " Aff\t|" << " Type\t|" << " X, Y\t" << " St";
+
+        for (int i = 0; i< units.size(); i++)
+        {
+            std::cout
+            << std::endl
+            << units[i]->get_id() << "\t" << units[i]->get_affiliation() << "\t" << units[i]->get_type() << "\t" << units[i]->get_coordinates().first << ", " << units[i]->get_coordinates().second << "\t" << units[i]->get_current_stamina() << std::endl; 
+        }
+
+        /* checking conditions for training a new unit; rolling dice if the conditions are satisfied*/ 
+        if (units[0]->get_is_base_busy() != 0)
+            std::cout << "Training in progress, cannot train new units." << std::endl;
+        if (units[0]->get_is_base_busy() == 0 && gold < 100)
+            std::cout << "Insufficient gold for training new units." << std::endl;
+        if (units[0]->get_is_base_busy() == 0 && gold > 100)
+        {
+            if (dice(1, 100) > 50)
+                train(&dice, units[0]->get_affiliation(), &gold);
+            else
+                std::cout << "No training ordered." << std::endl;
+        }
+
+        /* ordering units to move */
+        for (int i = 0; i < units.size(); i++)
+            units[i]->move(&dice, units[i]->get_affiliation(), map_size_x, map_size_y);
+
+        player1_round_counter++;
     }
 
-    std::cout
-    << "units[2]->get_training_time_left() = "
-    << units[2]->get_training_time_left()
-    << std::endl;
-
-    units[2]->set_training_time_left(0);
-    
-    std::cout
-    << "units[2]->get_training_time_left() = "
-    << units[2]->get_training_time_left()
-    << std::endl;
-
-    units[2]->move(&dice, units[2]->get_affiliation(), map_size_x, map_size_y);
-
-    /*if (units_on_the_map_counter > 2)
-    {
-        for (int i = 0; i <= units_on_the_map_counter - 2; i++)
-        {
-            units[i]->move(&dice, 'P', map_size_x, map_size_y);
-        }
-    }*/
-
-    /* Declaring the vector to hold unit data 
-    std::vector<Unit*> units;
-
-    units.push_back(new Knight('P', &gold, &units_on_the_map_counter));
-    units.push_back(new Swordsman('E', &gold, &units_on_the_map_counter));*/
-
-    //std::cout << "Id of the unit under index 1: " << units[1]->id << std::endl;
-
-    //delete units;
+    sleep(2);
     return 0;
 }
