@@ -75,7 +75,7 @@ class Unit
     void set_is_base_busy(bool);
 
     /* other member functions */
-    void update_training_time(std::vector<Unit*>);
+    void update_training_time(std::vector<Unit*>, char);
 
     void move(int (*)(int, int), char, const int, const int);
 

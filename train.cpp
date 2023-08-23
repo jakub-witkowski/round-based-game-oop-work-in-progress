@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <fstream>
+//#include <fstream>
 
 /* class definitions */
 #include "base.h"
@@ -13,9 +13,10 @@
 #include "worker.h"
 #include "ram.h"
 
-void train(int (*r)(int min, int max), char aff, long* g)
+void train(int (*r)(int min, int max), char aff, long* g, std::vector<Unit*>& u)
 {
     int value{}; // holds the drawing result;
+	std::string prefix{"Started "};
 	std::string phrase; // phrase printed once training is initiated;
 	bool choice_made = false; // controls the selection process;
 
@@ -26,12 +27,13 @@ void train(int (*r)(int min, int max), char aff, long* g)
     if (choice_made == false && *g < 200)
 	{
 		phrase = "training a worker";
+		u.push_back(new Worker(aff, g));
+		choice_made = true;
 
-		Worker* training_unit_ptr = new Worker(aff, g);
+		/*Worker* training_unit_ptr = new Worker(aff, g);
 
 		unit_cost = training_unit_ptr->get_cost();
-		type = training_unit_ptr->get_type();
-		choice_made = true;
+		type = training_unit_ptr->get_type();*/
 	}
 
     if (choice_made == false && (*g >= 100 && *g < 250))
@@ -40,21 +42,13 @@ void train(int (*r)(int min, int max), char aff, long* g)
 		if (value <= 50)
 		{
 			phrase = "training a worker";
-
-			Worker* training_unit_ptr = new Worker(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Worker(aff, g));
 			choice_made = true;
 		}
 		else if (value > 50)
 		{
 			phrase = "training a pikeman";
-
-			Pikeman* training_unit_ptr = new Pikeman(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Pikeman(aff, g));
 			choice_made = true;
 		}
 	}
@@ -65,41 +59,25 @@ void train(int (*r)(int min, int max), char aff, long* g)
 		if (value <= 25)
 		{
 			phrase = "training a worker";
-
-			Worker* training_unit_ptr = new Worker(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Worker(aff, g));
 			choice_made = true;
 		}
 		else if (value > 25 && value <= 50)
 		{
 			phrase = "training a pikeman";
-
-			Pikeman* training_unit_ptr = new Pikeman(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Pikeman(aff, g));
 			choice_made = true;
 		}
 		else if (value > 50 && value < 75)
 		{
 			phrase = "training a swordsman";
-
-			Swordsman* training_unit_ptr = new Swordsman(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Swordsman(aff, g));
 			choice_made = true;
 		}
 		else if (value > 75 && value <= 100)
 		{
 			phrase = "training an archer";
-
-			Archer* training_unit_ptr = new Archer(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Archer(aff, g));
 			choice_made = true;
 		}
 	}
@@ -110,51 +88,31 @@ void train(int (*r)(int min, int max), char aff, long* g)
 		if (value <= 20)
 		{
 			phrase = "training a worker";
-
-			Worker* training_unit_ptr = new Worker(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Worker(aff, g));
 			choice_made = true;
 		}
 		else if (value > 20 && value <= 40)
 		{
 			phrase = "training a pikeman";
-
-			Pikeman* training_unit_ptr = new Pikeman(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Pikeman(aff, g));
 			choice_made = true;
 		}
 		else if (value > 40 && value <= 60)
 		{
 			phrase = "training a swordsman";
-
-			Swordsman* training_unit_ptr = new Swordsman(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Swordsman(aff, g));
 			choice_made = true;
 		}
 		else if (value > 60 && value <= 80)
 		{
 			phrase = "training an archer";
-
-			Archer* training_unit_ptr = new Archer(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Archer(aff, g));
 			choice_made = true;
 		}
 		else if (value > 80 && value <= 100)
 		{
 			phrase = "training a knight";
-
-			Knight* training_unit_ptr = new Knight(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Knight(aff, g));
 			choice_made = true;
 		}
 	}
@@ -165,61 +123,37 @@ void train(int (*r)(int min, int max), char aff, long* g)
 		if ((3 * value) <= 50)
 		{
 			phrase = "training a worker";
-
-			Worker* training_unit_ptr = new Worker(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Worker(aff, g));
 			choice_made = true;
 		}
 		else if ((3 * value) > 50 && (3 * value) <= 100)
 		{
 			phrase = "training a pikeman";
-
-			Pikeman* training_unit_ptr = new Pikeman(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Pikeman(aff, g));
 			choice_made = true;
 		}
 		else if ((3 * value) > 100 && (3 * value) <= 150)
 		{
 			phrase = "training a swordsman";
-
-			Swordsman* training_unit_ptr = new Swordsman(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Swordsman(aff, g));
 			choice_made = true;
 		}
 		else if ((3 * value) > 150 && (3 * value) <= 200)
 		{
 			phrase = "training an archer";
-
-			Archer* training_unit_ptr = new Archer(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Archer(aff, g));
 			choice_made = true;
 		}
 		else if ((3 * value) > 200 && (3 * value) <= 250)
 		{
 			phrase = "training a knight";
-
-			Knight* training_unit_ptr = new Knight(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Knight(aff, g));
 			choice_made = true;
 		}
 		else if ((3 * value) > 250 && (3 * value) <= 300)
 		{
 			phrase = "producing a ram";
-
-			Ram* training_unit_ptr = new Ram(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Ram(aff, g));
 			choice_made = true;
 		}
 	}
@@ -230,73 +164,72 @@ void train(int (*r)(int min, int max), char aff, long* g)
 		if ((value * 3.5) <= 50)
 		{
 			phrase = "training a worker";
-
-			Worker* training_unit_ptr = new Worker(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Worker(aff, g));
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 50 && (value * 3.5) <= 100)
 		{
 			phrase = "training a pikeman";
-
-			Pikeman* training_unit_ptr = new Pikeman(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Pikeman(aff, g));
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 100 && (value * 3.5) <= 150)
 		{
 			phrase = "training a swordsman";
-
-			Swordsman* training_unit_ptr = new Swordsman(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Swordsman(aff, g));
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 150 && (value * 3.5) <= 200)
 		{
 			phrase = "training an archer";
-
-			Archer* training_unit_ptr = new Archer(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Archer(aff, g));
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 200 && (value * 3.5) <= 250)
 		{
 			phrase = "training a knight";
-
-			Knight* training_unit_ptr = new Knight(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Knight(aff, g));
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 250 && (value * 3.5) <= 300)
 		{
 			phrase = "producing a ram";
-
-			Ram* training_unit_ptr = new Ram(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Ram(aff, g));
 			choice_made = true;
 		}
 		else if ((value * 3.5) > 300)
 		{
 			phrase = "producing a catapult";
-
-			Catapult* training_unit_ptr = new Catapult(aff, g);
-
-			unit_cost = training_unit_ptr->get_cost();
-			type = training_unit_ptr->get_type();
+			u.push_back(new Catapult(aff, g));
 			choice_made = true;
 		}	
 	}
+
+	if (choice_made == true)
+	{
+		if (aff == 'P')
+		{	
+			u[0]->set_is_base_busy(true);
+			std::cout
+			<< "Base 0 now busy."
+			<< std::endl;
+		}
+		else if (aff == 'E')
+		{
+			u[1]->set_is_base_busy(true);
+			std::cout
+			<< "Base 1 now busy."
+			<< std::endl;
+		}
+
+		std::cout
+		<< std::endl
+		<< prefix
+		<< phrase << ". "
+		<< " Units.size() = "
+		<< u.size()
+		<< std::endl;
+	}
+
 }
 

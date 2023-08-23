@@ -134,18 +134,18 @@ void Unit::set_is_base_busy(bool status)
 int Unit::number_of_active_units{0};
 
 /* Updates the number of rounds before a training unit becomes fully functional */
-void Unit::update_training_time(std::vector<Unit*> u)
+void Unit::update_training_time(std::vector<Unit*> u, char aff)
 {
-    if (this->get_training_time_left() > 1)
+    if (this->get_affiliation() == aff && this->get_training_time_left() > 1)
         this->decrease_training_time_left();
-    else if (this->get_training_time_left() == 1)
+    else if (this->get_affiliation() == aff && this->get_training_time_left() == 1)
     {
         this->decrease_training_time_left();
-        if (this->get_affiliation() == 'P')
+        if (aff == 'P')
         {
             u[0]->set_is_base_busy(false);
         }
-        else if (this->get_affiliation() == 'E')
+        else if (aff == 'E')
         {
             u[1]->set_is_base_busy(false);
         }
@@ -261,10 +261,19 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
 
         if (dice_cast == true)
         {
-            target_x = this->get_coordinates().first + x_axis_move;
-            target_y = this->get_coordinates().second + y_axis_move;
-            set_movement_points_left(get_movement_points_left() - distance);
+            if (this->get_affiliation() == 'P')
+            {
+                target_x = this->get_coordinates().first + x_axis_move;
+                target_y = this->get_coordinates().second + y_axis_move;
+            }
+            else if (this->get_affiliation() == 'E')
+            {
+                target_x = this->get_coordinates().first - x_axis_move;
+                target_y = this->get_coordinates().second - y_axis_move;
+            }
 
+            set_movement_points_left(get_movement_points_left() - distance);
+            
             std::cout
             << "Ordering unit "
             << this->get_id()
