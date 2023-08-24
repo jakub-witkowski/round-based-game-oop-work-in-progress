@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-std=c++11
-SOURCES=player1.cpp train.cpp dice.cpp unit.cpp
+SOURCES=player1.cpp train.cpp dice.cpp unit.cpp print_units.cpp
 
 all: game run
 
