@@ -37,7 +37,7 @@ class Base : public Unit
         set_current_stamina(200);
         set_is_base_busy(false);
 
-        std::cout
+        /*std::cout
         << "\nBase: " << std::endl
         << "affiliation: " << get_affiliation() << std::endl
         << "unit id: " << get_id() <<std::endl
@@ -45,7 +45,7 @@ class Base : public Unit
         << "y coord: " << get_coordinates().second << std::endl
         << "stamina: " << get_current_stamina() << std::endl
         << "is base busy?: " << get_is_base_busy() << std::endl
-        << "number of units on the map: " << get_number_of_active_units() << std::endl;
+        << "number of units on the map: " << get_number_of_active_units() << std::endl;*/
     }
 
     ~Base()

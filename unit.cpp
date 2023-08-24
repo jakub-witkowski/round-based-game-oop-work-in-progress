@@ -158,14 +158,14 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
     if ((this->get_affiliation() == aff) && (this->get_training_time_left() == 0))
     {
         /* how many fields a unit is ordered to move in x and y direction */
-        int x_axis_move;
-        int y_axis_move;
+        int x_axis_move{};
+        int y_axis_move{};
 
-        int row_number; // controls the use of the spread arrays
+        int row_number{}; // controls the use of the spread arrays
         bool dice_cast = false; // controls the validation process: 0 = no move generated; 1 = moves for two axes generated;
-        int distance; // the distance the unit is attempting to cover
-        int target_x; // target x coordinate
-        int target_y; // target y coordinate
+        int distance{}; // the distance the unit is attempting to cover
+        int target_x{}; // target x coordinate
+        int target_y{}; // target y coordinate
 
         /* auxiliary arrays for determining the x vs y spread in distance */
         const int spread1[2][2] = { {0, 1}, {1, 0} };

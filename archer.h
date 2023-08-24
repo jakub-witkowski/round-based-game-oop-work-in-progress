@@ -30,7 +30,7 @@ class Archer : public Unit
             set_coordinates(map_size_x - 1, map_size_y - 1);
         }
 
-        std::cout
+        /*std::cout
         << "\nArcher: " << std::endl
         << "affiliation: " << this->get_affiliation() << std::endl
         << "unit id: " << this->get_id() <<std::endl
@@ -40,6 +40,6 @@ class Archer : public Unit
         << "movement points left: " << this->get_movement_points_left() << std::endl
         << "attack possible?: " << this->get_can_attack_enemy_units() << std::endl
         << "gold left: " << *g << std::endl
-        << "number of units on the map: " << get_number_of_active_units() << std::endl;
+        << "number of units on the map: " << get_number_of_active_units() << std::endl;*/
     }
 };
