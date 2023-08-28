@@ -80,7 +80,11 @@ int main()
 
         /* ordering units to move */
         for (int i = 0; i < units.size(); i++)
-            units[i]->move(&dice, 'P', map_size_x, map_size_y);
+        {
+            std::cout << "Move for unit: " << i << ": ";
+            units[i]->move(&dice, 'P', map_size_x, map_size_y, &map);
+            std::cout << std::endl;
+        }
 
         player1_round_counter++;
         sleep(2);
@@ -122,7 +126,11 @@ int main()
 
         /* ordering units to move */
         for (int i = 0; i < units.size(); i++)
-            units[i]->move(&dice, 'E', map_size_x, map_size_y);
+        {
+            std::cout << "Move for unit: " << i << ": ";
+            units[i]->move(&dice, 'E', map_size_x, map_size_y, &map);
+            std::cout << std::endl;
+        }
 
         player2_round_counter++;
         sleep(2);

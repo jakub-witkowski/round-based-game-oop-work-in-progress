@@ -1,6 +1,7 @@
 #ifndef UNIT_H
 #define UNIT_H
 
+#include "map.h"
 #include <vector>
 
 class Unit
@@ -77,7 +78,7 @@ class Unit
     /* other member functions */
     void update_training_time(std::vector<Unit*>, char);
 
-    void move(int (*)(int, int), char, const int, const int);
+    void move(int (*)(int, int), char, const int, const int, Map*);
 
     void attack();
 };

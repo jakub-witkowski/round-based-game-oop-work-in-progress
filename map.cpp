@@ -25,9 +25,12 @@ void Map::parse_map(std::string f, int n, int m[][map_size_x])
 	else
 	{
 		std::cout << "Could not parse " << f << "!" << std::endl;
-	}
+	}	
+}
 
-	
+int Map::get_map_field_info(int x, int y)
+{
+	return this->map[y][x];
 }
 
 /*bool Map::can_move_to(int x, int y)

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "unit.h"
 #include "base.h"
+#include "map.h"
 #include <vector>
 
 /* getter function definitions */
@@ -153,7 +154,7 @@ void Unit::update_training_time(std::vector<Unit*> u, char aff)
 }
 
 /* Orders a unit to move to a randomly generated location */
-void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
+void Unit::move(int (*r)(int, int), char aff, const int x, const int y, Map* m)
 {
     if ((this->get_affiliation() == aff) && (this->get_training_time_left() == 0))
     {
@@ -176,14 +177,15 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
 
         if (this->get_type() == 'K')
         {
-            distance = r(0,5);
+            distance = r(1,5);
+            //distance = r(0,5);
             switch (distance)
             {
-                case 0:
+                /*case 0:
                     x_axis_move = 0;
                     y_axis_move = 0;
                     dice_cast = false;
-                    break;
+                    break;*/
                 case 1:
                     row_number = r(0,1);
                     x_axis_move = spread1[row_number][0];
@@ -216,16 +218,17 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
                     break;
             } 
         }
-        else if (this->get_type() != 'K')
+        else if (this->get_type() != 'K' && this->get_type() != 'B')
         {
-            distance = r(0,2);
+            distance = r(1,2);
+            //distance = r(0,2);
             switch (distance)
             {
-                case 0:
+                /*case 0:
                     x_axis_move = 0;
                     y_axis_move = 0;
                     dice_cast = false;
-                    break;
+                    break;*/
                 case 1:
                     row_number = r(0,1);
                     x_axis_move = spread1[row_number][0];
@@ -239,10 +242,6 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
                     dice_cast = true;
                     break;
             }
-        }
-        else if (this->get_type() == 'B')
-        {
-            dice_cast = false; //bases cannot move
         }
 
         /* Validating target coordinates */
@@ -261,6 +260,20 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
         {
             if (distance > this->get_movement_points_left())
                 dice_cast = false; // cannot exceed remaining movement
+        }
+
+        if (dice_cast == true)
+        {
+            if (this->get_affiliation() == 'P')
+            {
+                if (m->get_map_field_info(this->get_coordinates().first + x_axis_move, get_coordinates().second + y_axis_move) == 9)
+                    dice_cast = false; // cannot go on natural obstacles
+            }
+            if (this->get_affiliation() == 'E')
+            {
+                if (m->get_map_field_info(this->get_coordinates().first - x_axis_move, get_coordinates().second - y_axis_move) == 9)
+                    dice_cast = false; // cannot go on natural obstacles
+            }
         }
 
         if (dice_cast == true)

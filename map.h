@@ -24,7 +24,7 @@ class Map
 
     void parse_map(std::string, int, int[][map_size_x]);
 
-    //bool can_move_to(int, int);
+    int get_map_field_info(int, int);
 };
 
 #endif
