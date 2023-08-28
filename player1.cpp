@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 /* header files defining classes */
+#include "map.h"
 #include "unit.h"
 #include "base.h"
 #include "knight.h"
@@ -29,6 +30,9 @@ long p2_gold{2000};
 /* round counters */
 int player1_round_counter{1};
 int player2_round_counter{1};
+
+/* Establishing the map */
+Map map("map.txt");
 
 /* Declaring the vector to hold unit data */
 std::vector<Unit*> units = {new Base('P'), new Base('E')};

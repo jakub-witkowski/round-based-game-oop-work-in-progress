@@ -15,7 +15,7 @@ class Unit
     int movement_points_left; 
     int current_stamina;
     bool can_attack_enemy_units;
-    int training_time_left;
+    int training_time_left{};
     int cost;
     int attack_range;
     bool is_base_busy;

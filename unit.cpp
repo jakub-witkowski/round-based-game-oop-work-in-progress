@@ -240,6 +240,10 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y)
                     break;
             }
         }
+        else if (this->get_type() == 'B')
+        {
+            dice_cast = false; //bases cannot move
+        }
 
         /* Validating target coordinates */
         if (dice_cast == true)
