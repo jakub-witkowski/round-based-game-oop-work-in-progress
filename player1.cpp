@@ -82,7 +82,7 @@ int main()
         for (int i = 0; i < units.size(); i++)
         {
             std::cout << "Move for unit: " << i << ": ";
-            units[i]->move(&dice, 'P', map_size_x, map_size_y, &map);
+            units[i]->move(&dice, 'P', map_size_x, map_size_y, &map, units);
             std::cout << std::endl;
         }
 
@@ -128,7 +128,7 @@ int main()
         for (int i = 0; i < units.size(); i++)
         {
             std::cout << "Move for unit: " << i << ": ";
-            units[i]->move(&dice, 'E', map_size_x, map_size_y, &map);
+            units[i]->move(&dice, 'E', map_size_x, map_size_y, &map, units);
             std::cout << std::endl;
         }
 

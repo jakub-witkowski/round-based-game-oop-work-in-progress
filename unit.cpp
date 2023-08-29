@@ -154,7 +154,7 @@ void Unit::update_training_time(std::vector<Unit*> u, char aff)
 }
 
 /* Orders a unit to move to a randomly generated location */
-void Unit::move(int (*r)(int, int), char aff, const int x, const int y, Map* m)
+void Unit::move(int (*r)(int, int), char aff, const int x, const int y, Map* m, std::vector<Unit*> u)
 {
     if ((this->get_affiliation() == aff) && (this->get_training_time_left() == 0))
     {
@@ -278,6 +278,14 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y, Map* m)
 
         if (dice_cast == true)
         {
+            if (is_map_field_occupied(u, this->affiliation, this->get_coordinates().first, this->get_coordinates().second) == true)
+                dice_cast = false;
+            else
+                dice_cast = true;
+        }
+
+        if (dice_cast == true)
+        {
             if (this->get_affiliation() == 'P')
             {
                 target_x = this->get_coordinates().first + x_axis_move;
@@ -304,4 +312,34 @@ void Unit::move(int (*r)(int, int), char aff, const int x, const int y, Map* m)
             this->set_coordinates(target_x, target_y);
         }
     }
+}
+
+bool Unit::is_map_field_occupied(std::vector<Unit*> u, char aff, int x, int y)
+{
+    int number_of_units_at_the_field{0};
+    char opponent_affiliation;
+
+    if (aff == 'P')
+        opponent_affiliation = 'E';
+    else if (aff == 'E')
+        opponent_affiliation = 'P';
+
+    for (int i = 0; i < u.size(); i++)
+    {
+        if (u[i]->get_type() == 'B')
+            continue;
+        else
+        {
+            if (u[i]->get_affiliation() == opponent_affiliation)
+            {
+                if (u[i]->get_coordinates().first == x && u[i]->get_coordinates().second == y)
+                number_of_units_at_the_field++;
+            }
+        }
+    }
+
+    if (number_of_units_at_the_field > 0)
+        return true;
+    else
+        return false;
 }

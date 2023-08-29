@@ -78,7 +78,9 @@ class Unit
     /* other member functions */
     void update_training_time(std::vector<Unit*>, char);
 
-    void move(int (*)(int, int), char, const int, const int, Map*);
+    void move(int (*)(int, int), char, const int, const int, Map*, std::vector<Unit*>);
+
+    bool is_map_field_occupied(std::vector<Unit*>, char, int, int);
 
     void attack();
 };
