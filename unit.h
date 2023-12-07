@@ -3,6 +3,7 @@
 
 #include "map.h"
 #include <vector>
+#include <functional>
 
 class Unit
 {
@@ -78,7 +79,7 @@ class Unit
     /* other member functions */
     void update_training_time(std::vector<Unit*>, char);
 
-    void move(int (*)(int, int), char, const int, const int, Map*, std::vector<Unit*>);
+    void move(std::function<int(int,int)>, char, const int, const int, Map*, std::vector<Unit*>);
 
     bool is_map_field_occupied(std::vector<Unit*>, char, int, int);
 

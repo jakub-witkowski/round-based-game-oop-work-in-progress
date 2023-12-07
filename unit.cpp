@@ -3,6 +3,7 @@
 #include "base.h"
 #include "map.h"
 #include <vector>
+#include <functional>
 
 /* getter function definitions */
 int Unit::get_number_of_active_units()
@@ -154,7 +155,7 @@ void Unit::update_training_time(std::vector<Unit*> u, char aff)
 }
 
 /* Orders a unit to move to a randomly generated location */
-void Unit::move(int (*r)(int, int), char aff, const int x, const int y, Map* m, std::vector<Unit*> u)
+void Unit::move(std::function<int(int, int)> r, char aff, const int x, const int y, Map* m, std::vector<Unit*> u)
 {
     if ((this->get_affiliation() == aff) && (this->get_training_time_left() == 0))
     {
@@ -326,20 +327,18 @@ bool Unit::is_map_field_occupied(std::vector<Unit*> u, char aff, int x, int y)
 
     for (int i = 0; i < u.size(); i++)
     {
-        if (u[i]->get_type() == 'B')
-            continue;
-        else
+        if (u[i]->get_affiliation() == opponent_affiliation)
         {
-            if (u[i]->get_affiliation() == opponent_affiliation)
-            {
-                if (u[i]->get_coordinates().first == x && u[i]->get_coordinates().second == y)
-                number_of_units_at_the_field++;
-            }
+            if (u[i]->get_coordinates().first == x && u[i]->get_coordinates().second == y)
+            number_of_units_at_the_field++;
         }
     }
 
     if (number_of_units_at_the_field > 0)
+    {
+        std::cout << "Cannot move to enemy-held territory." << std::endl;
         return true;
+    }
     else
         return false;
 }

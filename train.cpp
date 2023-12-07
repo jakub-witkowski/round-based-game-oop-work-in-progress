@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <functional>
 //#include <fstream>
 
 /* class definitions */
@@ -13,7 +14,8 @@
 #include "worker.h"
 #include "ram.h"
 
-void train(int (*r)(int min, int max), char aff, long* g, std::vector<Unit*>& u)
+//void train(int (*r)(int min, int max), char aff, long* g, std::vector<Unit*>& u)
+void train(std::function<int(int,int)> r, char aff, long* g, std::vector<Unit*>& u)
 {
     int value{}; // holds the drawing result;
 	std::string prefix{"Started "};

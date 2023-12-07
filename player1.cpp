@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <functional>
 #include <unistd.h>
 
 /* header files defining classes */
@@ -37,6 +38,9 @@ Map map("map.txt");
 /* Declaring the vector to hold unit data */
 std::vector<Unit*> units = {new Base('P'), new Base('E')};
 
+/* Declaring function pointer */
+std::function<int(int,int)> roll_dice = dice;
+
 int main()
 {
     while(player1_round_counter + player2_round_counter < 1000)
@@ -72,8 +76,8 @@ int main()
             std::cout << "Insufficient gold for training new units." << std::endl;
         if (units[0]->get_is_base_busy() == false && p1_gold > 100)
         {
-            if (dice(1, 100) > 50)
-                train(&dice, 'P', &p1_gold, units);
+            if (roll_dice(1, 100) > 50)
+                train(roll_dice, 'P', &p1_gold, units);
             else
                 std::cout << "No training ordered." << std::endl;
         }
@@ -82,7 +86,7 @@ int main()
         for (int i = 0; i < units.size(); i++)
         {
             std::cout << "Move for unit: " << i << ": ";
-            units[i]->move(&dice, 'P', map_size_x, map_size_y, &map, units);
+            units[i]->move(roll_dice, 'P', map_size_x, map_size_y, &map, units);
             std::cout << std::endl;
         }
 
@@ -118,8 +122,8 @@ int main()
             std::cout << "Insufficient gold for training new units." << std::endl;
         if (units[1]->get_is_base_busy() == false && p2_gold > 100)
         {
-            if (dice(1, 100) > 50)
-                train(&dice, 'E', &p2_gold, units);
+            if (roll_dice(1, 100) > 50)
+                train(roll_dice, 'E', &p2_gold, units);
             else
                 std::cout << "No training ordered." << std::endl;
         }
@@ -128,7 +132,7 @@ int main()
         for (int i = 0; i < units.size(); i++)
         {
             std::cout << "Move for unit: " << i << ": ";
-            units[i]->move(&dice, 'E', map_size_x, map_size_y, &map, units);
+            units[i]->move(roll_dice, 'E', map_size_x, map_size_y, &map, units);
             std::cout << std::endl;
         }
 
